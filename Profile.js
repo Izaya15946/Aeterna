@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const userEmail = localStorage.getItem("userEmail");
   const storedUser = localStorage.getItem("userProfile");
 
-  // Auth Guard: Redirects guests to Login.html if no session email is found
+  // Auth Guard: Redirects guests to index.html if no session email is found
   if (!userEmail) {
     alert("Please log in first!");
-    window.location.href = "Login.html";
+    window.location.href = "index.html";
     return;
   }
 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     logoutBtn.addEventListener("click", function(e) {
       e.preventDefault();
       localStorage.clear();
-      window.location.href = "Login.html";
+      window.location.href = "index.html";
     });
   }
 });
