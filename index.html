@@ -38,32 +38,37 @@
 </form>
 
 <script>
-const googleScriptUrl="https://script.google.com/macros/s/AKfycbz-FrRIsjT6lqhoOgrkndtffrRjsinvs51Ma8j619qb6NDhcgSr2RWwdpqAFsrEJ_kz/exec";
-	document.getElementById("loginForm").addEventListener("submit", function(e) {
-	  e.preventDefault();
-	  let payload = Object.fromEntries(new FormData(this));
-	  payload.action = "login";
+      const googleScriptUrl = "https://script.google.com/macros/s/AKfycbz-FrRIsjT6lqhoOgrkndtffrRjsinvs51Ma8j619qb6NDhcgSr2RWwdpqAFsrEJ_kz/exec";
 
-	  fetch(googleScriptUrl, {
-		method: "POST",
-		headers: { "Content-Type": "text/plain" },
-		body: JSON.stringify(payload)
-	  })
-	  .then(res => res.json())
-	  .then(data => {
-		if (data.result === "success") {
-		  // Save user email & profile object locally
-		  localStorage.setItem("userEmail", data.user.email);
-		  localStorage.setItem("userProfile", JSON.stringify(data.user));
-		  
-		  alert("Welcome " + data.user.fullname + "!");
-		  window.location.href = "Websitehtml.html";
-		} else {
-		  alert("Fail: " + data.message);
-		}
-	  });
-	});
-</script>
+      document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        let payload = Object.fromEntries(new FormData(this));
+        payload.action = "login";
+
+        fetch(googleScriptUrl, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === "success") {
+            // Save user session keys
+            localStorage.setItem("userEmail", data.user.email);
+            localStorage.setItem("userProfile", JSON.stringify(data.user));
+            
+            alert("Welcome " + data.user.fullname + "!");
+
+            // Brief delay ensures local storage writes before page redirect
+            setTimeout(() => {
+              window.location.href = "Websitehtml.html";
+            }, 100);
+          } else {
+            alert("Fail: " + data.message);
+          }
+        });
+      });
+    </script>
 	
 </span>
 <span class="footer">
