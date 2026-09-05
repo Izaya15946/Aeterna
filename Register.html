@@ -1,0 +1,100 @@
+		<!DOCTYPE html>
+	<html>
+	<head>
+				<title>Register | Arts:Gallery |</title>
+				<link rel="shortcut icon" href="pics/logo/finishlogo2.0.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<body style="background-color: #eeeeee">
+<link rel="stylesheet" href="Register.css">
+	<body>
+	<div style="overflow: hidden;box-sizing: border-box;background-color:#bc342a;text-align:center; top: 0%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+	<h3><center><img src="AeteraArtis2.png"height="auto" width="30%" ></center>
+    </div><br>
+	<div class="container">
+	<a href="Login.html"class="fa fa-arrow-left"></a>
+	<center><h3><span class="header2">REGISTRATION</h3></span><br><br></center>
+	<div style="padding-left: 20% ;overflow: auto;">
+		<!-- Removed method and action attributes so JavaScript can handle the submission safely -->
+<form id="registerForm" name="form1">
+    <p>Full Name:</p>
+    <input type="text" id="reg-fullname" name="Fullname" placeholder="Fullname" required>
+    
+    <p>Birthday:</p>
+    <input type="date" id="birthday" name="birthday">
+    
+    <p>Country:</p>
+    <select id="reg-country" name="Country" class="select" required>
+        <option value="" selected disabled>Select your country</option>
+        <option>Japan</option>
+        <option>USA</option>
+        <option>Philippines</option>
+        <option>North Korea</option>
+        <option>South Korea</option>
+    </select>
+    <p>Email:</p>
+    <input type="text" id="reg-uname" placeholder="Enter Username" name="uname" required>
+    
+    <p>Password:</p>
+    <input type="password" id="pass" placeholder="Enter Password" name="psw" required>
+    
+    <p>Re-Password:</p>
+    <input type="password" id="re-pass" placeholder="Enter Password" name="re-psw" required>
+    
+    <p>Gender:</p>
+    <!-- Kept your radio buttons with unique names and values -->
+    <input type="radio" name="gender" value="M" required/>Male
+    <input type="radio" name="gender" value="F" required/>Female
+    <input type="radio" name="gender" value="O" required/>Other<br><br>
+<script>
+const googleScriptUrl = "https://script.google.com/macros/s/AKfycbz-FrRIsjT6lqhoOgrkndtffrRjsinvs51Ma8j619qb6NDhcgSr2RWwdpqAFsrEJ_kz/exec"; 
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Basic manual password validation matching check
+  if (document.getElementById("pass").value !== document.getElementById("re-pass").value) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  // Pack all your input fields instantly by their HTML name tags
+  let payload = Object.fromEntries(new FormData(this));
+  payload.action = "register"; 
+
+  fetch(googleScriptUrl, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.result === "success") {
+      alert("Registered successfully!");
+      window.location.href = "Login.html";
+    } else {
+      alert("Error: " + data.message);
+    }
+  });
+});
+</script>
+	</div>
+	<hr>
+	<center>
+        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+        <input class="button" type="submit" value="Sign up"/>
+        <input class="button" type="reset" value="Reset"/>
+    </center><br>
+	</form>
+	</div>
+	</body>
+	<small><div style="overflow: hidden;box-sizing: border-box;color:#ddd;background-color:#2b2b2b;padding:2% 2%;text-align: justify;text-align:center; bottom: 0%;box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.4);">
+		<p>Follow me on:<br>
+			<a href="https://www.facebook.com/isaiah.sarcia.5/"style="align:right;" class="fa fa-facebook"></a>
+			<a href="#" style="align:right;" class="fa fa-twitter"></a>
+			<a href="#" style="align:right;" class="fa fa-pinterest"></a>
+			<a href="#" style="align:right;" class="fa fa-instagram"></a></p>
+		<hr>
+	&copy; Copyright 2021, Arts:Gallery Cooparation. This site is for my project only.</small> 
+	</div>
+	</html>

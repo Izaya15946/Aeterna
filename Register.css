@@ -1,0 +1,80 @@
+body, html {
+				height: 100%;
+				width: 100%;
+				margin: 0;
+				font: 100%/1.8 sans-serif;
+				color: #808080;
+			}
+			.button {
+				background-color: black;
+				padding: 10px 15px;
+				margin: 8px 8px;
+				border: none;
+				text-align: left;
+				opacity:0.8;
+				border-radius: 8px;
+				color:#FFFFFF;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			}
+			.button:hover {
+				opacity: 1;
+				box-shadow: none;	
+			}
+			input[type=text], input[type=password], input[type=date], .select {
+				width:70%;
+				padding: 15px;	
+				border: 1px solid #ccc;
+				box-sizing: border-box;
+				margin: 5px 0 20px 0;
+			}
+			.container {
+				
+				align:center;
+				padding:20px 80px;
+				margin:10%;
+				margin-top:0;
+				overflow: auto;
+				border-radius:10px;
+				background-color:#FFFFFF;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+			.form {
+				width: 100%;
+				background-color:#FFFFFF;
+				margin:3px;
+				padding: 10px 15px;
+			}
+
+			.header {
+				color:#FFFFFF;
+				font-size: 80%;
+				letter-spacing: 10px;		
+				border-radius:20px;
+				float: center;
+			}
+			.header2 {
+				color:#000000;
+				font-size: 150%;
+				letter-spacing: 10px;		
+				border-radius:20px;
+				float: center;
+			}
+			.fa {
+				padding: 10px;
+				font-size: 25px;
+				width:30px;
+				text-align: center;
+				text-decoration: none;
+				margin: 5px 2px;
+				border-radius: 9%;
+			}
+			.fa:hover {
+				background: #202429;
+				color:#FFFFFF;
+			}
+			.fa-facebook, .fa-twitter, .fa-instagram,.fa-pinterest {	
+				color:#FFFFFF;
+			}
+			.fa-arrow-left {
+				color:#808080;
+			}

@@ -1,0 +1,624 @@
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #a0a0b0;
+    background-color: #0f0f11;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;  
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #141417;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+    border-bottom: 1px solid #2a2a30;         
+    z-index: 9999;
+    padding: 0 20px;
+}
+
+.logo-wrapper {
+    margin-right: auto; 
+    display: flex;
+    align-items: center;
+}
+
+
+.site-logo {
+    height: 50px;
+    width: auto;
+    padding: 10px 0;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 200, 0.3));
+}
+
+.content {
+    font-weight: bold;
+}
+
+.content a, 
+.dropbtn {
+    display: inline-block;
+    color: #e1e1e6;
+    padding: 22px 25px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.content a.active {
+    color: #00ffc8;
+    border-bottom: 3px solid #00ffc8;
+    border-radius: 2px;
+}
+
+.content a:hover, 
+.dropdown:hover .dropbtn {
+    background-color: #26262e;
+    color: #00ffc8;
+    border-bottom: 3px solid #00ffc8;
+    border-radius: 2px;
+}
+
+/* DROPDOWN MENU */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #141417;
+    min-width: 170px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #2a2a30;
+    z-index: 10000;
+}
+
+.dropdown-content a {
+    color: #e1e1e6;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #26262e;
+    color: #00ffc8;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ==========================================================================
+   3. LAYOUT STRUCTURES
+   ========================================================================== */
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.layout2 {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.leftsidebar, 
+.rightsidebar, 
+.middlebox, 
+.Account-Container {
+    background-color: #1a1a1e;
+    border: 1px solid #2a2a30;
+    border-radius: 2vh;
+    padding: 10px 25px;
+}
+
+.leftsidebar, .rightsidebar { 
+    width: 17vw; 
+    margin-bottom: 10px; 
+}
+
+.leftsidebar h3, .rightsidebar h3 {
+    color: #ffffff;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #2a2a30;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.leftsidebar p {
+    color: #a0a0b0;
+    font-size: 16px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.rightsidebar p {
+    display: inline-flex;
+    color: #00ffc8;
+    font-size: 13px;
+    background-color: #26262e;
+    padding: 5px;
+    border-radius: 5vh;
+    margin: 1px;
+    text-decoration: none;
+}
+
+.middle-layer1 {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;             
+    margin: 0 2vw;    
+    width: 30vw;
+}
+
+.middle-layer2 {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;             
+    margin: 0 2vw;    
+    width: 40vw;
+}
+
+.left-layer {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;             
+    margin: 0 1vw;    
+}
+
+.right-layer {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;             
+}
+
+/* ==========================================================================
+   4. FEED, INPUTS & PROFILE
+   ========================================================================== */
+.middlebox h3 {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;  
+    border: 1px solid #2a2a30;
+    border-radius: 30vh;
+    background-color: #26262e;
+    color: white;
+}
+
+.profile {
+    background-color: #26262e;
+    border: 1px solid #2a2a30;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;   
+    margin-right: 10px;
+    flex-shrink: 0; 
+    overflow: hidden;
+}
+
+.profile img, .Profile-Pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+}
+
+.Profile-Pic {
+    background-color: #26262e;
+    border: 1px solid #2a2a30;
+    border-radius: 100%;
+    width: 30vh; 
+    aspect-ratio: 1 / 1;   
+    overflow: hidden;
+}
+
+.profile-container {
+    height: auto;
+    width: 80vw;
+    border: 1px solid #2a2a30;
+    border-radius: 4vh;
+    padding: 10px;
+    background-color: #26262e;
+    margin-top: 10px;
+}
+
+.Account-Container {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;             
+    margin: 0 1vw;    
+    width: auto;
+}
+
+.Account-Container h3 {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: #00ffc8;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2a30;
+    padding-top: 10px;
+}
+
+.Account-Container h4 {
+    color: #ffffff;
+    font-size: 25px;
+    margin-right: 40px;
+    padding-bottom: 5px;
+}
+
+.Account-Container p {
+    color: #a0a0b0;
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+/* BUTTONS & UPLOAD */
+.upload-control {
+    display: inline-flex;
+    border: 1px solid #2a2a30;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+#uploadBtn a {
+    background-color: #0f0f11;
+    color: #a0a0b0;
+    border: 1px solid #2a2a30;
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+#uploadBtn:hover a {
+    filter: brightness(120%);
+}
+
+.middlebox button {
+    background-color: #26262e;
+    color: #a0a0b0;
+    border: 1px solid #2a2a30;
+    border-radius: 40%;
+    width: auto;
+    height: 45px; 
+    padding: 10px;
+    margin-left: 10px;
+}
+
+/* POST CONTAINERS */
+.container-post {
+    background-color: #1a1a1e;
+    border: 1px solid #2a2a30;
+    border-radius: 2vh;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+}
+
+.container-post h4 {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.container-post small {
+    color: #a0a0b0;
+    font-size: 11px;
+}
+
+.container-post h1 {
+    color: #e1e1e6;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   5. GALLERY & EXPLORE PAGES
+   ========================================================================== */
+
+/* Header Section */
+.gallery-headtitle {
+    background-color: #bc342a;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-headtitle h2 {
+    color: #ffffff;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Hero & Background Banners */
+.gallery-hero-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.backimg1, 
+.backimg2 {
+    width: 100%;
+    min-height: 450px;
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.backimg1 { 
+    background-image: url("pics/GlowArts/HomeDesk.png"); 
+}
+
+.backimg2 { 
+    background-image: url("pics/DigitalArts/Untitled17_20210515152642.png"); 
+}
+
+/* Gallery Grid Layouts */
+.gallery-page {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.gallery-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 5%;
+}
+
+.gallery-column {
+    flex: 1;
+    text-align: center;
+}
+
+.gallery-column h2 a {
+    color: #e1e1e6;
+    text-decoration: none;
+    letter-spacing: 3px;
+    transition: color 0.2s ease;
+}
+
+.gallery-column h2 a:hover {
+    color: #00ffc8;
+}
+
+/* Cards Container (Sub-galleries) */
+.gallery-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-cards-container a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Image Base & Card Styles */
+.a1, .a2, .a3, .a4 {
+    border-radius: 12px;
+    margin: 15px 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
+    filter: brightness(90%);
+    border: 1px solid #2a2a30;
+    max-width: 100%;
+}
+
+.a1, .a2 {
+    height: auto;
+    width: 80%;
+}
+
+/* Specific Sub-gallery Image Sizing */
+.gallery-cards-container img.a3,
+.gallery-cards-container img.a4 {
+    width: 220px !important;
+    height: 300px !important;
+    object-fit: cover;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    filter: brightness(85%);
+    border: 2px solid #2a2a30;
+}
+
+/* Hover Effects */
+.a1:hover, .a2:hover {
+    transform: scale(1.03);
+    border-color: #00ffc8;
+}
+
+.gallery-cards-container img.a3:hover,
+.gallery-cards-container img.a4:hover {
+    transform: translateY(-8px) scale(1.04);
+    filter: brightness(110%);
+    border-color: #00ffc8;
+}
+
+.a1:hover { filter: brightness(115%); }
+.a2:hover { filter: brightness(105%); }
+
+/* Border Card Accent */
+.gallery-border {
+    background-color: #1a1a1e;
+    color: #ffffff;
+    padding: 18px;
+    font-size: 20px;
+    letter-spacing: 5px;
+    border-radius: 12px;
+    border: 1px solid #2a2a30;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Description Section */
+.gallery-description-section {
+    background-color: #141417;
+    color: #a0a0b0;
+    padding: 50px 10%;
+    text-align: center;
+    border-top: 1px solid #2a2a30;
+}
+
+.gallery-description-section h3 {
+    color: #00ffc8;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.gallery-description-section hr {
+    border: 0;
+    height: 1px;
+    background: #2a2a30;
+    margin: 20px 0;
+}
+
+.gallery-description-section p {
+    line-height: 1.8;
+    font-size: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Footer Sections */
+.gallery-footer {
+    color: #a0a0b0;
+    background-color: #141417;
+    border-top: 1px solid #2a2a30;
+    padding: 40px 8%;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.gallery-footer h3 {
+    text-align: center;
+    color: #00ffc8;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.gallery-footer hr {
+    border: 0;
+    height: 1px;
+    background: #2a2a30;
+    margin: 20px 0;
+}
+
+.gallery-footer p {
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.gallery-footer-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.gallery-btn {
+    background-color: #26262e;
+    border: 1px solid #2a2a30;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+}
+
+.gallery-btn:hover {
+    background-color: #00ffc8;
+}
+
+.gallery-btn a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.gallery-btn:hover a {
+    color: #0f0f11;
+}
+
+.gallery-footer-container {
+    background-color: #0f0f11;
+    color: #a0a0b0;
+    padding: 30px 8%;
+    text-align: center;
+    border-top: 1px solid #2a2a30;
+}
+
+/* Social Media Icons */
+.fa-gallery {
+    padding: 10px;
+    font-size: 22px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 4px;
+    border-radius: 8px;
+    color: #e1e1e6;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.fa-gallery:hover {
+    color: #00ffc8;
+    transform: translateY(-3px);
+}
+.fa-upload {
+    text-decoration: none;
+    border-radius: 8px;
+    color: #e1e1e6;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.fa-upload:hover {
+    color: #00ffc8;
+    transform: translateY(-3px);
+}

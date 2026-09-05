@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>| Arts:Gallery |</title>
+    <link rel="shortcut icon" href="pics/logo/finishlogo2.0.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="AccountProfile.css">
+	<script src="logout.js"></script>
+    <script src="Profile.js"></script>
+    <script src="posts.js"></script>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <div class="navbar">
+        <a href="Websitehtml.html" class="logo-wrapper">
+            <img src="AeteraArtis2.png" alt="Aeterna Artis Logo" class="site-logo">
+        </a>
+        
+        <div class="content">
+            <a href="Websitehtml.html" >HOME</a>
+        </div>
+        <div class="content">
+            <div class="dropdown">
+                <a href="Gallery.html" class="dropbtn">EXPLORE <i class="fa fa-chevron-down arrow-icon"></i></a>
+                <div class="dropdown-content">
+                    <a href="GlowingArt.html">GLOW ARTS</a>
+                    <a href="DigitalArt.html">DIGITAL ARTS</a>
+                </div>
+            </div>
+        </div>
+		 <div class="content ">
+			<div class="dropdown">
+        <a href="Home.html" class="dropbtn ">ABOUT US <i class="fa fa-chevron-down arrow-icon"></i></a>
+                <div class="dropdown-content">
+                    <a href="Profile.html">CREATOR</a>
+                </div>
+            </div>
+		</div>
+        <div class="content"><a href="AccountProfile.html"class="active">PROFILE</a></div>
+        <div class="content"><a href="#" id="navLogout">LOGOUT</a></div>
+    </div>
+    <div class="layout">
+        <div class="profile-container">
+            <div class="layout"> 
+                <div class="left-layer">
+                    <div class="Account-Container">
+                    
+
+                        <div class="Profile-Pic">
+                            <img class="profile-pic" id="profileImg" src="Profile-Placeholder.png" alt="Profile">
+                        </div>      
+                        <div class="content">
+                            <div class="dropdown">
+                               <p><i class="fa fa-chevron-down arrow-icon fa-upload"></i></p>
+                                <div class="dropdown-content">
+                                        <input type="file" id="fileInput" accept="image/*" hidden>
+                                        <a href="#"button id="uploadBtn">Upload Photo</a>
+                                    <a href="#">View Profile</a>
+                                </div>
+                            </div>                                      
+                        </div>
+                    </div>
+                </div>
+                    <div class="middle-layer1">
+                        <div class="Account-Container">
+                                <h3>Profile Details</h3>
+                            <div class="layout2">
+								<div style="width:40%;"><h4>Name:</h4></div><div style="width:60%;"><p><span class="prof-name">Loading...</span></p></div>
+								    </div>
+                                    <div class="layout2">
+                                <div style="width:40%;"><h4>Country:</h4></div><div style="width:60%;"><p><span id="prof-country">Loading...</span></p></div>	
+									</div>
+                                    <div class="layout2">
+								<div style="width:40%;"><h4>Email:</h4></div><div style="width:60%;"><p><span id="prof-email">Loading...</span></p></div>
+									</div>
+                                    <div class="layout2">
+								<div style="width:40%;"><h4>Birthday:</h4></div><div style="width:60%;"><p><span id="prof-birthday">Loading...</span></p></div>
+							</div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+</div><br><br>
+    <div class="layout">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="leftsidebar">
+            <h3>Quick Navigation</h3>
+            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-home"></i> Feed</p></a>
+            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-fire"></i> Trending</p></a>
+            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-bookmark"></i> Dashboard</p></a>
+			<a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-gear"></i> Settings</p></a>
+        </div>
+        
+        <!-- FEED CONTAINER -->
+        <div class="middle-layer2">
+               <div class="middlebox">
+                <h3>
+                    <div class="profile"><img class="profile-pic" src="Profile-Placeholder.png" alt="Profile"></div>
+                    <input type="text" id="postContent" placeholder="Share your thought?" required>
+                    <button id="postBtn">Post</button>
+                </h3>
+            </div>
+                <div id="feedContainer"></div>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+		<div class="right-layer">
+        <div class="rightsidebar">
+            <h3>Popular Tags</h3>
+            <p>#GlowArts</p>
+            <p>#DigitalArts</p>
+            <p>#CoolArt</p>
+        </div>
+        <div class="rightsidebar">
+            <h3>Follow us on Facebook</h3>
+            <a href="https://www.facebook.com/rhayverlloyd09"><p>Romero, Rhayver</p></a>
+            <a href="https://www.facebook.com/herminiano.malaga"><p>Malaga, Herminiano</p></a>
+            <a href="https://www.facebook.com/isaiah.sarcia.3"><p>Sarcia  , Isaiah</p></a>
+            <p>Emi Fukado</p>
+        </div>
+		</div>
+        </div>
+    </div>

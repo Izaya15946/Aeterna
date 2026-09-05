@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>| Arts:Gallery |</title>
+    <link rel="shortcut icon" href="pics/logo/finishlogo2.0.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="Website.css">
+	<script src="logout.js"></script>
+    <script src="Profile.js"></script>
+    <script src="posts.js"></script>
+
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <div class="navbar">
+        <a href="Websitehtml.html" class="logo-wrapper">
+            <img src="AeteraArtis2.png" alt="Aeterna Artis Logo" class="site-logo">
+        </a>
+        
+        <div class="content">
+            <a href="Websitehtml.html" class="active">HOME</a>
+        </div>
+        <div class="content">
+            <div class="dropdown">
+                <a href="Gallery.html" class="dropbtn">EXPLORE <i class="fa fa-chevron-down arrow-icon"></i></a>
+                <div class="dropdown-content">
+                    <a href="GlowingArt.html">GLOW ARTS</a>
+                    <a href="DigitalArt.html">DIGITAL ARTS</a>
+                </div>
+            </div>
+        </div>
+		 <div class="content">
+			<div class="dropdown">
+        <a href="Home.html" class="dropbtn">ABOUT US <i class="fa fa-chevron-down arrow-icon"></i></a>
+                <div class="dropdown-content">
+                    <a href="Profile.html">CREATOR</a>
+                </div>
+            </div>
+		</div>
+        <div class="content"><a href="AccountProfile.html">PROFILE</a></div>
+        <div class="content"><a href="#" id="navLogout">LOGOUT</a></div>
+    </div>
+
+    <!-- HERO / BANNER -->
+    <div class="backimg1">
+        <div class="header">
+            <h1>Aeterna Artis</h1>
+            <p>Discover, share, and celebrate digital & glowing artworks.</p>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE LAYOUT -->
+    <div class="layout">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="leftsidebar">
+            <h3>Quick Navigation</h3>
+            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-home"></i> Feed</p></a>
+            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-fire"></i> Trending</p></a>
+            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-bookmark"></i> Dashboard</p></a>
+			<a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-gear"></i> Settings</p></a>
+        </div>
+        
+        <!-- FEED CONTAINER -->
+        <div class="middle-layer">
+            
+            <div class="middlebox">
+                <h3>
+                    <div class="profile"><img class="profile-pic" src="Profile-Placeholder.png" alt="Profile"></div>
+                    <input type="text" id="postContent" placeholder="Share your thought?"required>
+                    <button id="postBtn">Post</button>
+                </h3>
+            </div>
+            
+                <div id="feedContainer"></div>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="rightsidebar">
+            <h3>Popular Tags</h3>
+            <p>#GlowArts</p>
+            <p>#DigitalArts</p>
+            <p>#CoolArt</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

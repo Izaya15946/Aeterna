@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+			<title>Login | Arts:Gallery |</title>
+			<link rel="shortcut icon" href="pics/logo/finishlogo2.0.png" >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body style="background-color: #eeeeee">
+<link rel="stylesheet" href="Login.css">
+<body>
+<div class="bg-slider">
+	<img src="pics/GlowArts/HomeDesk.png" alt="Background 1">
+    <img src="pics\GlowArts\rimurutempest.png" alt="Background 2">
+    <img src="pics/DigitalArts/Untitled17_20210515152642.png" alt="Background 3">
+  </div>
+ <div class="overlay"></div>
+  <div class="content-box">
+<span class="container">
+<form id="loginForm">
+	<h3><center><img src="AeteraArtis2.png"height="100vh" width="auto"  style="filter: invert(100%);"></center></h3>
+    <hr>
+    <p style="text-align:left;">Email:</p>
+    <!-- Added id="email" so JavaScript can find it -->
+    <input type="text" placeholder="Enter Email" id="email" name="uname" required>
+    <br>
+    <p style="text-align:left;">Password:</p>
+    <!-- Added id="password" so JavaScript can find it -->
+    <input type="password" placeholder="Enter Password" id="password" name="psw" required>
+    <br>
+	<br>
+    <center>
+        <input class="button" type="submit" value="Sign in"/>
+        <input class="button" type="reset" value="Forgot?"/>
+    </center>
+	<br>
+    <hr>
+    <p style="text-align:center;">Need an account? <a href="Register.html">Sign up</a></p>
+</form>
+
+<script>
+const googleScriptUrl="https://script.google.com/macros/s/AKfycbz-FrRIsjT6lqhoOgrkndtffrRjsinvs51Ma8j619qb6NDhcgSr2RWwdpqAFsrEJ_kz/exec";
+	document.getElementById("loginForm").addEventListener("submit", function(e) {
+	  e.preventDefault();
+	  let payload = Object.fromEntries(new FormData(this));
+	  payload.action = "login";
+
+	  fetch(googleScriptUrl, {
+		method: "POST",
+		headers: { "Content-Type": "text/plain" },
+		body: JSON.stringify(payload)
+	  })
+	  .then(res => res.json())
+	  .then(data => {
+		if (data.result === "success") {
+		  // Save user email & profile object locally
+		  localStorage.setItem("userEmail", data.user.email);
+		  localStorage.setItem("userProfile", JSON.stringify(data.user));
+		  
+		  alert("Welcome " + data.user.fullname + "!");
+		  window.location.href = "Websitehtml.html";
+		} else {
+		  alert("Fail: " + data.message);
+		}
+	  });
+	});
+</script>
+	
+</span>
+<span class="footer">
+<small>Follow me on:<br>
+	<a href="https://www.facebook.com/isaiah.sarcia.5"class="fa fa-facebook"></a>
+	<a href="https://twitter.com/isaiahsarcia" class="fa fa-twitter"></a>
+	<a href="https://www.pinterest.ph/sarciaisaiah02" class="fa fa-pinterest"></a>
+	<a href="https://www.instagram.com/isaiahsarcia/?hl=en" class="fa fa-instagram"></a><br><hr>
+&copy; Copyright 2021, Art:Gallery Cooparation. This site is for my project only.</small>
+</span>
+</div>
+
+</body>
+<html>
