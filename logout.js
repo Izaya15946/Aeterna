@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     logoutBtn.addEventListener("click", function(e) {
       e.preventDefault();   // Prevents '#' link jump
       localStorage.clear();  // Clears user session
-      window.location.href = "Login.html"; // Redirects to login
+      window.location.href = "index.html"; // Redirects to login
     });
   }
 });
