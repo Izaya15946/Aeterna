@@ -46,7 +46,7 @@
     <!-- HERO / BANNER -->
     <div class="backimg1">
         <div class="header">
-            <h1>Aeterna Artis</h1>
+            <img src="AeteraArtis2.png"height="auto" width="30%">
             <p>Discover, share, and celebrate digital & glowing artworks.</p>
         </div>
     </div>
@@ -68,9 +68,42 @@
             
             <div class="middlebox">
                 <h3>
-                    <div class="profile"><img class="profile-pic" src="Profile-Placeholder.png" alt="Profile"></div>
-                    <input type="text" id="postContent" placeholder="Share your thought?"required>
-                    <button id="postBtn">Post</button>
+                    <<div class="create-post-bar" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <img class="profile-pic" src="Profile-Placeholder.png" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                    <button id="openModalBtn" style="flex: 1; text-align: left; padding: 10px 15px; border-radius: 20px; border: 1px solid #444; background: #222; color: #888; cursor: pointer;">
+                        Share your thoughts or artworks...
+                    </button>
+                    </div>
+
+<!-- Post Modal Window -->
+                    <div id="postModal" class="modal" style="display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
+                    <div style="background:#222; color:#fff; margin:10% auto; padding:20px; width:90%; max-width:450px; border-radius:8px;">
+                        <h3>Create New Post</h3>
+                        
+                        <label>Category:</label>
+                        <select id="modalCategory" style="width:100%; margin-bottom:10px;">
+                        <option value="Digital Art">Digital Art</option>
+                        <option value="Traditional Art">Traditional Art</option>
+                        <option value="3D Model">3D Model</option>
+                        </select>
+
+                        <label>Post Type:</label>
+                        <select id="modalPostType" style="width:100%; margin-bottom:10px;">
+                        <option value="Showcasing">Showcasing</option>
+                        <option value="Selling">Selling</option>
+                        </select>
+
+                        <textarea id="modalContent" placeholder="Describe your post..." style="width:100%; height:80px; margin-bottom:10px;"></textarea>
+
+                        <label>Upload Artwork Image:</label>
+                        <input type="file" id="modalImageInput" accept="image/*" style="margin-bottom:15px;">
+
+                        <div style="text-align:right;">
+                        <button id="closeModalBtn" type="button">Cancel</button>
+                        <button id="submitModalPostBtn" type="button">Post</button>
+                        </div>
+                    </div>
+                    </div>
                 </h3>
             </div>
             
