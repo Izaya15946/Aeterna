@@ -6,21 +6,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
   fetchPosts(isProfilePage ? userEmail : null);
 
-  // Modal Controls
+  // Modal & Preview Controls
   const modal = document.getElementById("postModal");
   const openBtn = document.getElementById("openModalBtn");
   const closeBtn = document.getElementById("closeModalBtn");
   const submitBtn = document.getElementById("submitModalPostBtn");
+  const fileInput = document.getElementById("modalImageInput");
+  const previewContainer = document.getElementById("imagePreviewContainer");
+  const previewImg = document.getElementById("imagePreview");
 
   if (openBtn) openBtn.onclick = () => modal.style.display = "block";
-  if (closeBtn) closeBtn.onclick = () => modal.style.display = "none";
+  if (closeBtn) closeBtn.onclick = () => {
+    modal.style.display = "none";
+    resetModalFields();
+  };
+
+  // Image Live Preview Event
+  if (fileInput) {
+    fileInput.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewImg.src = e.target.result;
+          previewContainer.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewContainer.style.display = "none";
+        previewImg.src = "";
+      }
+    });
+  }
 
   if (submitBtn) {
     submitBtn.addEventListener("click", function() {
       const content = document.getElementById("modalContent").value.trim();
       const category = document.getElementById("modalCategory").value;
       const postType = document.getElementById("modalPostType").value;
-      const fileInput = document.getElementById("modalImageInput");
       const file = fileInput.files[0];
 
       if (!content && !file) {
@@ -68,13 +91,19 @@ document.addEventListener("DOMContentLoaded", function() {
       submitBtn.disabled = false;
       if (data.result === "success") {
         modal.style.display = "none";
-        document.getElementById("modalContent").value = "";
-        document.getElementById("modalImageInput").value = "";
+        resetModalFields();
         fetchPosts(isProfilePage ? userEmail : null);
       } else {
         alert("Failed to post: " + data.message);
       }
     });
+  }
+
+  function resetModalFields() {
+    document.getElementById("modalContent").value = "";
+    if (fileInput) fileInput.value = "";
+    if (previewContainer) previewContainer.style.display = "none";
+    if (previewImg) previewImg.src = "";
   }
 });
 
@@ -103,36 +132,46 @@ function renderFeed(posts) {
   posts.forEach(post => {
     const postDiv = document.createElement("div");
     postDiv.className = "container-post";
-    postDiv.style.cssText = "border:1px solid #333; padding:15px; margin-bottom:15px; border-radius:8px;";
 
     const avatarSrc = post.userImageUrl ? post.userImageUrl : "Profile-Placeholder.png";
-    const postImgTag = post.postImageUrl ? `<img src="${post.postImageUrl}" style="max-width:100%; border-radius:5px; margin-top:10px;">` : "";
+    const postImgTag = post.postImageUrl ? `<img src="${post.postImageUrl}" style="max-width:100%; border-radius:8px; margin-top:10px;">` : "";
 
-    // Comments list HTML
+    // Build comment list with commenter profile pictures
     let commentsHtml = "";
     if (post.comments && post.comments.length > 0) {
       post.comments.forEach(c => {
-        commentsHtml += `<div style="font-size:12px; margin-top:4px;"><b>${c.fullname}:</b> ${c.comment}</div>`;
+        const commenterAvatar = c.imageUrl ? c.imageUrl : "Profile-Placeholder.png";
+        commentsHtml += `
+          <div class="comment-item">
+            <img src="${commenterAvatar}" class="comment-avatar">
+            <div class="comment-content">
+              <span class="comment-author">${c.fullname}</span>
+              <span>${c.comment}</span>
+            </div>
+          </div>
+        `;
       });
     }
 
     postDiv.innerHTML = `
       <div style="display:flex; align-items:center; gap:10px;">
-        <img src="${avatarSrc}" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+        <img src="${avatarSrc}" class="profile-pic" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
         <div>
           <h4 style="margin:0;">${post.fullname}</h4>
-          <span style="font-size:10px; background:#444; padding:2px 6px; border-radius:4px;">${post.category}</span>
-          <span style="font-size:10px; background:#007bff; padding:2px 6px; border-radius:4px;">${post.postType}</span>
+          <div style="display:flex; gap:6px; margin-top:4px;">
+            <span style="font-size:10px; background:#26262e; color:#00ffc8; padding:2px 8px; border-radius:12px;">${post.category}</span>
+            <span style="font-size:10px; background:#00ffc8; color:#0f0f11; font-weight:bold; padding:2px 8px; border-radius:12px;">${post.postType}</span>
+          </div>
         </div>
       </div>
-      <p style="margin-top:10px;">${post.content}</p>
+      <p style="margin-top:12px; font-size:15px; color:#e1e1e6; line-height:1.4;">${post.content}</p>
       ${postImgTag}
       
-      <div style="margin-top:15px; border-top:1px solid #333; padding-top:10px;">
+      <div style="margin-top:15px; border-top:1px solid #2a2a30; padding-top:10px;">
         <div id="comments-list-${post.postId}">${commentsHtml}</div>
-        <div style="display:flex; gap:5px; margin-top:8px;">
-          <input type="text" id="input-${post.postId}" placeholder="Write a comment..." style="flex:1;">
-          <button onclick="submitComment('${post.postId}')">Comment</button>
+        <div class="comment-box-container">
+          <input type="text" id="input-${post.postId}" placeholder="Write a comment...">
+          <button type="button" onclick="submitComment('${post.postId}')">Comment</button>
         </div>
       </div>
     `;
@@ -153,6 +192,7 @@ function submitComment(postId) {
     action: "addComment",
     postId: postId,
     fullname: storedUser.fullname || "User",
+    imageUrl: storedUser.imageUrl || "",
     comment: commentText
   };
 
@@ -166,7 +206,17 @@ function submitComment(postId) {
     if (data.result === "success") {
       input.value = "";
       const commentsList = document.getElementById(`comments-list-${postId}`);
-      commentsList.innerHTML += `<div style="font-size:12px; margin-top:4px;"><b>${payload.fullname}:</b> ${commentText}</div>`;
+      const commenterAvatar = payload.imageUrl ? payload.imageUrl : "Profile-Placeholder.png";
+      
+      commentsList.innerHTML += `
+        <div class="comment-item">
+          <img src="${commenterAvatar}" class="comment-avatar">
+          <div class="comment-content">
+            <span class="comment-author">${payload.fullname}</span>
+            <span>${commentText}</span>
+          </div>
+        </div>
+      `;
     }
   });
 }

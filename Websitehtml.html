@@ -67,45 +67,55 @@
         <div class="middle-layer">
             
             <div class="middlebox">
-                <h3>
-                    <<div class="create-post-bar" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-                    <img class="profile-pic" src="Profile-Placeholder.png" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                    <button id="openModalBtn" style="flex: 1; text-align: left; padding: 10px 15px; border-radius: 20px; border: 1px solid #444; background: #222; color: #888; cursor: pointer;">
-                        Share your thoughts or artworks...
-                    </button>
-                    </div>
+                
+                    <div class="create-post-bar">
+                        <img class="profile-pic" src="Profile-Placeholder.png" alt="Profile">
+                        <button id="openModalBtn" type="button">Share your thoughts or artworks...</button>
+                        </div>
 
-<!-- Post Modal Window -->
-                    <div id="postModal" class="modal" style="display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6);">
-                    <div style="background:#222; color:#fff; margin:10% auto; padding:20px; width:90%; max-width:450px; border-radius:8px;">
+            <!-- Post Modal Window -->
+                    <div id="postModal" class="modal">
+                    <div class="modal-content">
                         <h3>Create New Post</h3>
                         
-                        <label>Category:</label>
-                        <select id="modalCategory" style="width:100%; margin-bottom:10px;">
-                        <option value="Digital Art">Digital Art</option>
-                        <option value="Traditional Art">Traditional Art</option>
-                        <option value="3D Model">3D Model</option>
-                        </select>
+                        <!-- Horizontal Dropdowns -->
+                        <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalCategory">Category</label>
+                            <select id="modalCategory">
+                            <option value="Digital Art">Digital Art</option>
+                            <option value="Traditional Art">Traditional Art</option>
+                            <option value="3D Model">3D Model</option>
+                            </select>
+                        </div>
 
-                        <label>Post Type:</label>
-                        <select id="modalPostType" style="width:100%; margin-bottom:10px;">
-                        <option value="Showcasing">Showcasing</option>
-                        <option value="Selling">Selling</option>
-                        </select>
+                        <div class="form-group">
+                            <label for="modalPostType">Post Type</label>
+                            <select id="modalPostType">
+                            <option value="Showcasing">Showcasing</option>
+                            <option value="Selling">Selling</option>
+                            </select>
+                        </div>
+                        </div>
 
-                        <textarea id="modalContent" placeholder="Describe your post..." style="width:100%; height:80px; margin-bottom:10px;"></textarea>
+                        <!-- Description -->
+                        <label for="modalContent">Description</label>
+                        <textarea id="modalContent" placeholder="Describe your artwork or thoughts..."></textarea>
 
-                        <label>Upload Artwork Image:</label>
-                        <input type="file" id="modalImageInput" accept="image/*" style="margin-bottom:15px;">
+                        <!-- File Upload and Live Preview -->
+                        <label for="modalImageInput">Upload Artwork</label>
+                        <input type="file" id="modalImageInput" accept="image/*">
+                        <div id="imagePreviewContainer" style="display:none; margin-bottom:15px; text-align:center;">
+                        <img id="imagePreview" src="" alt="Preview" style="max-width:100%; max-height:200px; border-radius:8px; border:1px solid #32323e;">
+                        </div>
 
-                        <div style="text-align:right;">
-                        <button id="closeModalBtn" type="button">Cancel</button>
-                        <button id="submitModalPostBtn" type="button">Post</button>
+                        <!-- Actions -->
+                        <div class="modal-actions">
+                        <button id="closeModalBtn" type="button" class="btn-cancel">Cancel</button>
+                        <button id="submitModalPostBtn" type="button" class="btn-submit">Post</button>
                         </div>
                     </div>
                     </div>
-                </h3>
-            </div>
             
                 <div id="feedContainer"></div>
         </div>

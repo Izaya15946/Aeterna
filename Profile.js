@@ -2,7 +2,7 @@
 // 1. GLOBAL CONFIGURATION & API URL
 // ==========================================
 // Stores the Google Apps Script Web App URL for database & Drive communication
-const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzQe6jV_i9nG-YLHxPtp2RdM0gUxWpGwNbXCx5vkrto2uNkWkNSKaLM5i_WbEP3GIeG/exec";
+const googleScriptUrl = "https://script.google.com/macros/s/AKfycbxjtGQamikC5QGn9yw-fhvHzf4ubNSorCjDF3Q-6KRfmAHws2IHmC4Z4o8ylc03gy9w/exec";
 
 
 // ==========================================
