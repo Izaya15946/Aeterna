@@ -19,7 +19,7 @@
         </a>
         
         <div class="content">
-            <a href="Websitehtml.html" >HOME</a>
+            <a href="Websitehtml.html">HOME</a>
         </div>
         <div class="content">
             <div class="dropdown">
@@ -30,98 +30,162 @@
                 </div>
             </div>
         </div>
-		 <div class="content ">
-			<div class="dropdown">
-        <a href="Home.html" class="dropbtn ">ABOUT US <i class="fa fa-chevron-down arrow-icon"></i></a>
+        <div class="content">
+            <div class="dropdown">
+                <a href="Home.html" class="dropbtn">ABOUT US <i class="fa fa-chevron-down arrow-icon"></i></a>
                 <div class="dropdown-content">
                     <a href="Profile.html">CREATOR</a>
                 </div>
             </div>
-		</div>
-        <div class="content"><a href="AccountProfile.html"class="active">PROFILE</a></div>
+        </div>
+        <div class="content"><a href="AccountProfile.html" class="active">PROFILE</a></div>
         <div class="content"><a href="#" id="navLogout">LOGOUT</a></div>
     </div>
+
+    <!-- TOP SECTION: PROFILE HEADER -->
     <div class="layout">
         <div class="profile-container">
-            <div class="layout"> 
-                <div class="left-layer">
-                    <div class="Account-Container">
-                    
-
-                        <div class="Profile-Pic">
-                            <img class="profile-pic" id="profileImg" src="Profile-Placeholder.png" alt="Profile">
-                        </div>      
-                        <div class="content">
-                            <div class="dropdown">
-                               <p><i class="fa fa-chevron-down arrow-icon fa-upload"></i></p>
-                                <div class="dropdown-content">
-                                        <input type="file" id="fileInput" accept="image/*" hidden>
-                                        <a href="#"button id="uploadBtn">Upload Photo</a>
-                                    <a href="#">View Profile</a>
-                                </div>
-                            </div>                                      
-                        </div>
-                    </div>
-                </div>
-                    <div class="middle-layer1">
-                        <div class="Account-Container">
-                                <h3>Profile Details</h3>
-                            <div class="layout2">
-								<div style="width:40%;"><h4>Name:</h4></div><div style="width:60%;"><p><span class="prof-name">Loading...</span></p></div>
-								    </div>
-                                    <div class="layout2">
-                                <div style="width:40%;"><h4>Country:</h4></div><div style="width:60%;"><p><span id="prof-country">Loading...</span></p></div>	
-									</div>
-                                    <div class="layout2">
-								<div style="width:40%;"><h4>Email:</h4></div><div style="width:60%;"><p><span id="prof-email">Loading...</span></p></div>
-									</div>
-                                    <div class="layout2">
-								<div style="width:40%;"><h4>Birthday:</h4></div><div style="width:60%;"><p><span id="prof-birthday">Loading...</span></p></div>
-							</div>
-                        </div>
-                   </div>
-                </div>
-            </div>
-        </div>
-</div><br><br>
-    <div class="layout">
-
-        <!-- LEFT SIDEBAR -->
-        <div class="leftsidebar">
-            <h3>Quick Navigation</h3>
-            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-home"></i> Feed</p></a>
-            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-fire"></i> Trending</p></a>
-            <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-bookmark"></i> Dashboard</p></a>
-			<a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-gear"></i> Settings</p></a>
+            <div style="display: flex; gap: 40px; align-items: center;"> 
+                
+                <div style="width: 200px; text-align: center;">
+    <div class="profile-dropdown-wrapper" id="profileDropdownWrapper" style="position: relative; cursor: pointer; display: inline-block;">
+        <div class="Profile-Pic">
+            <img class="profile-pic" id="profileImg" src="Profile-Placeholder.png" alt="Profile">
         </div>
         
-        <!-- FEED CONTAINER -->
-        <div class="middle-layer2">
-               <div class="middlebox">
-                <h3>
-                    <div class="profile"><img class="profile-pic" src="Profile-Placeholder.png" alt="Profile"></div>
-                    <input type="text" id="postContent" placeholder="Share your thought?" required>
-                    <button id="postBtn">Post</button>
-                </h3>
-            </div>
-                <div id="feedContainer"></div>
-        </div>
-
-        <!-- RIGHT SIDEBAR -->
-		<div class="right-layer">
-        <div class="rightsidebar">
-            <h3>Popular Tags</h3>
-            <p>#GlowArts</p>
-            <p>#DigitalArts</p>
-            <p>#CoolArt</p>
-        </div>
-        <div class="rightsidebar">
-            <h3>Follow us on Facebook</h3>
-            <a href="https://www.facebook.com/rhayverlloyd09"><p>Romero, Rhayver</p></a>
-            <a href="https://www.facebook.com/herminiano.malaga"><p>Malaga, Herminiano</p></a>
-            <a href="https://www.facebook.com/isaiah.sarcia.3"><p>Sarcia  , Isaiah</p></a>
-            <p>Emi Fukado</p>
-        </div>
-		</div>
+        <!-- Dropdown Menu (Hidden by default, toggled via JS) -->
+        <div id="profileMenu" class="profile-menu-content">
+            <input type="file" id="fileInput" accept="image/*" hidden>
+            <a href="#" id="uploadBtn"> Upload Photo</a>
+            <a href="#" id="viewProfileBtn"> View Profile Photo</a>
         </div>
     </div>
+</div>
+                <div class="Account-Container" style="flex: 1; border: none; padding: 0;">
+                    <h3>Profile Details</h3>
+                    <div class="layout2">
+                        <div style="width:20%;"><h4>Name:</h4></div>
+                        <div style="width:80%;"><p><span class="prof-name">Loading...</span></p></div>
+                    </div>
+                    <div class="layout2">
+                        <div style="width:20%;"><h4>Country:</h4></div>
+                        <div style="width:80%;"><p><span id="prof-country">Loading...</span></p></div>   
+                    </div>
+                    <div class="layout2">
+                        <div style="width:20%;"><h4>Email:</h4></div>
+                        <div style="width:80%;"><p><span id="prof-email">Loading...</span></p></div>
+                    </div>
+                    <div class="layout2">
+                        <div style="width:20%;"><h4>Birthday:</h4></div>
+                        <div style="width:80%;"><p><span id="prof-birthday">Loading...</span></p></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN FEED & SIDEBARS LAYOUT -->
+    <div class="layout" style="margin-top: 20px;">
+        
+        <!-- LEFT SIDEBAR LAYER -->
+        <div class="left-layer">
+            <div class="leftsidebar">
+                <h3>Quick Navigation</h3>
+                <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-home"></i> Feed</p></a>
+                <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-fire"></i> Trending</p></a>
+                <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-bookmark"></i> Dashboard</p></a>
+                <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-gear"></i> Settings</p></a>
+            </div>
+            <div class="leftsidebar">
+                <h3>Post Type</h3>
+                <button class="filter-btn active" onclick="filterPosts('postType', 'All')">All Types</button>
+                <button class="filter-btn" onclick="filterPosts('postType', 'Showcasing')">Showcasing</button>
+                <button class="filter-btn" onclick="filterPosts('postType', 'Selling')">Selling</button>
+            </div>
+        </div>
+
+        <!-- MIDDLE FEED LAYER -->
+        <div class="middle-layer1">
+            
+                <div class="create-post-bar" style="display: flex; gap: 12px; align-items: center;">
+                    <img class="profile-pic" src="Profile-Placeholder.png" alt="Profile" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                    <button id="openModalBtn" type="button">Share your thoughts or artworks...</button>
+                </div>
+
+
+            <!-- Post Modal Window -->
+                    <div id="postModal" class="modal">
+                    <div class="modal-content">
+                        <h3>Create New Post</h3>
+                        
+                        <!-- Horizontal Dropdowns -->
+                        <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalCategory">Category</label>
+                            <select id="modalCategory">
+                            <option value="Digital Art">Digital Art</option>
+                            <option value="Traditional Art">Traditional Art</option>
+                            <option value="3D Model">3D Model</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modalPostType">Post Type</label>
+                            <select id="modalPostType">
+                            <option value="Showcasing">Showcasing</option>
+                            <option value="Selling">Selling</option>
+                            </select>
+                        </div>
+                        </div>
+
+                        <!-- Description -->
+                        <label for="modalContent">Description</label>
+                        <textarea id="modalContent" placeholder="Describe your artwork or thoughts..."></textarea>
+
+                        <!-- File Upload and Live Preview -->
+                        <label for="modalImageInput">Upload Artwork</label>
+                        <input type="file" id="modalImageInput" accept="image/*">
+                        <div id="imagePreviewContainer" style="display:none; margin-bottom:15px; text-align:center;">
+                        <img id="imagePreview" src="" alt="Preview" style="max-width:100%; max-height:200px; border-radius:8px; border:1px solid #32323e;">
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="modal-actions">
+                        <button id="closeModalBtn" type="button" class="btn-cancel">Cancel</button>
+                        <button id="submitModalPostBtn" type="button" class="btn-submit">Post</button>
+                        </div>
+                    </div>
+                    
+            
+                </div>
+
+            <!-- FEED CONTAINER -->
+            <div id="feedContainer"></div>
+        </div>
+
+        <!-- RIGHT SIDEBAR LAYER -->
+        <div class="right-layer">
+            <div class="rightsidebar">
+                <h3>Popular Tags</h3>
+                <div class="tags-container">
+                    <span class="filter-btn" style="display:inline-block; width:auto;">#Traditional</span>
+                    <span class="filter-btn" style="display:inline-block; width:auto;">#DigitalArts</span>
+                </div>
+            </div>
+            <div class="rightsidebar">
+                <h3>Categories</h3>
+                <button class="filter-btn active" onclick="filterPosts('category', 'All')">All Categories</button>
+                <button class="filter-btn" onclick="filterPosts('category', 'Digital Art')">Digital Art</button>
+                <button class="filter-btn" onclick="filterPosts('category', 'Traditional Art')">Traditional Art</button>
+                <button class="filter-btn" onclick="filterPosts('category', '3D Model')">3D Model</button>
+            </div>
+        </div>
+
+    </div>
+<div id="imageLightbox" class="modal" style="display: none; background-color: rgba(0, 0, 0, 0.9); cursor: pointer; z-index: 20000;" onclick="closeLightbox()">
+    <span style="position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold;">&times;</span>
+    <img id="lightboxImg" style="max-width: 90%; max-height: 90vh; margin: auto; display: block; border-radius: 8px; object-fit: contain;">
+</div>
+</body>
+</html>

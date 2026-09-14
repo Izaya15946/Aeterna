@@ -173,3 +173,44 @@ function handleImageUpload(file) {
 
   reader.readAsDataURL(file);
 }
+document.addEventListener("DOMContentLoaded", function() {
+    const wrapper = document.getElementById("profileDropdownWrapper");
+    const menu = document.getElementById("profileMenu");
+    const profileImg = document.getElementById("profileImg");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const fileInput = document.getElementById("fileInput");
+    const viewProfileBtn = document.getElementById("viewProfileBtn");
+
+    // Toggle menu on profile picture click
+    if (wrapper && menu) {
+        wrapper.addEventListener("click", function(e) {
+            e.stopPropagation();
+            menu.classList.toggle("show");
+        });
+    }
+
+    // Close menu when clicking anywhere else on the page
+    document.addEventListener("click", function() {
+        if (menu) menu.classList.remove("show");
+    });
+
+    // Trigger file upload click
+    if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            fileInput.click();
+        });
+    }
+
+    // View full profile image in Lightbox
+    if (viewProfileBtn && profileImg) {
+        viewProfileBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (typeof openLightbox === "function") {
+                openLightbox(profileImg.src);
+            } else {
+                window.open(profileImg.src, "_blank");
+            }
+        });
+    }
+});

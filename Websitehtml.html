@@ -53,7 +53,7 @@
 
     <!-- MAIN PAGE LAYOUT -->
     <div class="layout">
-
+        <div class="left-layer">
         <!-- LEFT SIDEBAR -->
         <div class="leftsidebar">
             <h3>Quick Navigation</h3>
@@ -62,12 +62,16 @@
             <a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa fa-bookmark"></i> Dashboard</p></a>
 			<a href="Websitehtml.html" style="text-decoration: none;"><p><i class="fa-solid fa-gear"></i> Settings</p></a>
         </div>
-        
+        <div class="leftsidebar">
+            <h3>Post Type</h3>
+            <button class="filter-btn active" onclick="filterPosts('postType', 'All')">All Types</button>
+            <button class="filter-btn" onclick="filterPosts('postType', 'Showcasing')">Showcasing</button>
+            <button class="filter-btn" onclick="filterPosts('postType', 'Selling')">Selling</button>
+            </div>
+        </div>
         <!-- FEED CONTAINER -->
         <div class="middle-layer">
             
-            <div class="middlebox">
-                
                     <div class="create-post-bar">
                         <img class="profile-pic" src="Profile-Placeholder.png" alt="Profile">
                         <button id="openModalBtn" type="button">Share your thoughts or artworks...</button>
@@ -115,20 +119,32 @@
                         <button id="submitModalPostBtn" type="button" class="btn-submit">Post</button>
                         </div>
                     </div>
-                    </div>
+                    
             
+                </div>
                 <div id="feedContainer"></div>
         </div>
-
+        <div class="right-layer">
         <!-- RIGHT SIDEBAR -->
         <div class="rightsidebar">
             <h3>Popular Tags</h3>
-            <p>#GlowArts</p>
-            <p>#DigitalArts</p>
-            <p>#CoolArt</p>
+            <div class="tags-container">
+            <span class="filter-btn" style="display:inline-block; width:auto;">#Traditional</span>
+            <span class="filter-btn" style="display:inline-block; width:auto;">#DigitalArts</span>
+            </div>
         </div>
-
-    </div>
-
+        <div class="rightsidebar">
+        <h3>Categories</h3>
+        <button class="filter-btn active" onclick="filterPosts('category', 'All')">All Categories</button>
+        <button class="filter-btn" onclick="filterPosts('category', 'Digital Art')">Digital Art</button>
+        <button class="filter-btn" onclick="filterPosts('category', 'Traditional Art')">Traditional Art</button>
+        <button class="filter-btn" onclick="filterPosts('category', '3D Model')">3D Model</button>
+        </div>
+</div>
+    
+<div id="imageLightbox" class="modal" style="display: none; background-color: rgba(0, 0, 0, 0.9); cursor: pointer;" onclick="closeLightbox()">
+    <span style="position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold;">&times;</span>
+    <img id="lightboxImg" style="max-width: 90%; max-height: 90vh; margin: auto; display: block; border-radius: 8px; object-fit: contain;">
+</div>
 </body>
 </html>
