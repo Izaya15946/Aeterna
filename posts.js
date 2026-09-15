@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", function() {
   const storedUser = JSON.parse(localStorage.getItem("userProfile") || "{}");
   const isProfilePage = window.location.pathname.toLowerCase().includes("accountprofile.html");
 
+  // Dynamically pull avatar from DOM or localStorage keys
+  const currentUserAvatar = storedUser.imageUrl || storedUser.profilePic || storedUser.picture || document.querySelector(".prof-img")?.src || document.querySelector(".profile-pic")?.src || "";
+
+  // Update the create-post bar avatar on load if present
+  const barAvatar = document.querySelector(".create-post-bar img");
+  if (barAvatar && currentUserAvatar) {
+    barAvatar.src = currentUserAvatar;
+  }
+
   fetchPosts(isProfilePage ? userEmail : null);
 
   // Modal & Elements
@@ -64,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
         action: "createPost",
         email: userEmail,
         fullname: storedUser.fullname || document.querySelector(".prof-name")?.innerText || "User",
-        userImageUrl: storedUser.imageUrl || "",
+        userImageUrl: currentUserAvatar,
         content: content,
         category: category,
         postType: postType
@@ -175,27 +184,40 @@ function renderFeed(posts) {
     return;
   }
 
+  // Fallback SVG string if no profile image URL is present
+  const defaultAvatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0a0b0'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-3.8-1.04-4.84-2.6.03-.99 2.01-1.53 3.34-1.53 1.33 0 3.31.54 3.34 1.53-1.04 1.56-2.81 2.6-4.84 2.6z'/></svg>";
+
   posts.forEach(post => {
     const postDiv = document.createElement("div");
     postDiv.className = "container-post";
 
-    const avatarSrc = post.userImageUrl ? post.userImageUrl : "Profile-Placeholder.png";
+    // Checks post.userImageUrl, post.imageUrl, and fallback SVG
+    const avatarSrc = (post.userImageUrl && post.userImageUrl !== "") 
+      ? post.userImageUrl 
+      : (post.imageUrl && post.imageUrl !== "") 
+        ? post.imageUrl 
+        : defaultAvatar;
+
     const postImgTag = post.postImageUrl 
       ? `<div class="post-image-wrapper">
           <img src="${post.postImageUrl}" class="post-image" alt="Post artwork" style="cursor: pointer;" onclick="openLightbox('${post.postImageUrl}')">
         </div>` 
       : "";
 
-    // Set custom badge styling for Selling vs other post types
     const isSelling = post.postType === "Selling";
     const postTypeStyle = isSelling
-      ? "background: #ff4d4d; color: #ffffff;" // Red background with white text for Selling
-      : "background: #00ffc8; color: #0f0f11;"; // Default style for Showcasing/others
+      ? "background: #ff4d4d; color: #ffffff;"
+      : "background: #00ffc8; color: #0f0f11;";
 
     let commentsHtml = "";
     if (post.comments && post.comments.length > 0) {
       post.comments.forEach(c => {
-        const commenterAvatar = (c.imageUrl && c.imageUrl !== "") ? c.imageUrl : "Profile-Placeholder.png";
+        const commenterAvatar = (c.imageUrl && c.imageUrl !== "") 
+          ? c.imageUrl 
+          : (c.userImageUrl && c.userImageUrl !== "")
+            ? c.userImageUrl
+            : defaultAvatar;
+
         commentsHtml += `
           <div class="comment-item">
             <img src="${commenterAvatar}" class="comment-avatar" alt="${c.fullname}">
@@ -240,14 +262,17 @@ function submitComment(postId) {
   const input = document.getElementById(`input-${postId}`);
   const commentText = input.value.trim();
   const storedUser = JSON.parse(localStorage.getItem("userProfile") || "{}");
+  const defaultAvatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0a0b0'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-3.8-1.04-4.84-2.6.03-.99 2.01-1.53 3.34-1.53 1.33 0 3.31.54 3.34 1.53-1.04 1.56-2.81 2.6-4.84 2.6z'/></svg>";
 
   if (!commentText) return;
+
+  const currentAvatar = storedUser.imageUrl || storedUser.profilePic || storedUser.picture || document.querySelector(".prof-img")?.src || "";
 
   const payload = {
     action: "addComment",
     postId: postId,
     fullname: storedUser.fullname || document.querySelector(".prof-name")?.innerText || "User",
-    imageUrl: storedUser.imageUrl || "",
+    imageUrl: currentAvatar,
     comment: commentText
   };
 
@@ -261,7 +286,7 @@ function submitComment(postId) {
     if (data.result === "success") {
       input.value = "";
       const commentsList = document.getElementById(`comments-list-${postId}`);
-      const commenterAvatar = (payload.imageUrl && payload.imageUrl !== "") ? payload.imageUrl : "Profile-Placeholder.png";
+      const commenterAvatar = (payload.imageUrl && payload.imageUrl !== "") ? payload.imageUrl : defaultAvatar;
       
       commentsList.innerHTML += `
         <div class="comment-item">
