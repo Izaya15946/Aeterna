@@ -131,7 +131,7 @@ html, body {
         rgba(15, 15, 17, 0.4) 0%, 
         rgba(15, 15, 17, 0.8) 60%, 
         #0f0f11 100%
-    ), url("/pics/TraditionArts/img20211011_10364351.png") center/cover no-repeat;
+    ), url("pics/TraditionArts/img20211011_10364351.png") center/cover no-repeat;
 }
 
 .gallery-headtitle {
