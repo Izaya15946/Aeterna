@@ -420,7 +420,7 @@ img.post-image {
 .form-group {
     flex: 1;
 }
-
+.form-group label,
 .modal-content label {
     display: block;
     font-size: 12px;
